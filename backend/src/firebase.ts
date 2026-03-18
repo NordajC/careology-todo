@@ -1,18 +1,26 @@
-import { initializeApp, applicationDefault } from 'firebase-admin/app';
+import { initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import 'dotenv/config';
+
+const { FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY } = process.env;
+
+if (!FIREBASE_PROJECT_ID || !FIREBASE_CLIENT_EMAIL || !FIREBASE_PRIVATE_KEY) {
+    throw new Error('Missing Firebase environment variables')
+}
 
 initializeApp({
-  credential: applicationDefault(),
+    credential: cert({
+        projectId: FIREBASE_PROJECT_ID,
+        clientEmail: FIREBASE_CLIENT_EMAIL,
+        privateKey: FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    })
 });
 
-// This is what you'll call in your Apollo context
-// It takes the raw token string and returns the decoded user
-// or null if the token is invalid/missing
 export const verifyFirebaseToken = async (token: string) => {
-  try {
-    const decoded = await getAuth().verifyIdToken(token)
-    return decoded // contains uid, email, etc.
-  } catch (error) {
-    return null // invalid or expired token
-  }
+    try {
+        const decoded = await getAuth().verifyIdToken(token)
+        return decoded
+    } catch (error) {
+        return null
+    }
 }
