@@ -2,7 +2,7 @@ import {
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut as firebaseSignOut, 
-    type Auth, updateProfile, 
+    updateProfile, 
     browserLocalPersistence, 
     browserSessionPersistence, 
     setPersistence,

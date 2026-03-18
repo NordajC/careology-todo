@@ -4,7 +4,6 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Dashboard from "./pages/Dashboard"
 import { PrivateRoute } from "./components/PrivateRoute"
-import { useNavigate } from "react-router-dom"
 
 
 function App() {

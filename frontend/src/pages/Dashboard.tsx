@@ -19,16 +19,8 @@ interface GetTasksData {
     getTasks: Task[];
 }
 
-interface ReorderTasksData {
-    reorderTasks: {
-        __typename: string
-        id: string
-        order: number
-    }[]
-}
-
 export default function Dashboard() {
-    const { user } = useAuth();
+    const { } = useAuth();
     const navigate = useNavigate();
     const [showAddRow, setShowAddRow] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
