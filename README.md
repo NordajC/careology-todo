@@ -1,5 +1,7 @@
 # Checked 
 
+**Live Demo:** http://51.20.193.244
+
 A full-stack todo application built with React, TypeScript, Node.js, GraphQL, and MongoDB.
 
 ## Tech Stack
