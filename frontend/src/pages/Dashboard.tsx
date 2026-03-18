@@ -14,6 +14,7 @@ import { DesktopTaskList } from "@/components/TaskTable/DesktopTaskList";
 import { MobileTaskList } from "@/components/TaskTable/MobileTaskList";
 import type { CreateTaskInput, UpdateTaskInput } from "@/types/index";
 import { REORDER_TASKS } from "@/graphql/tasks"
+import { client } from "@/apollo/client"
 
 interface GetTasksData {
     getTasks: Task[];
@@ -106,6 +107,12 @@ export default function Dashboard() {
     async function handleLogout() {
         try {
             await signOut();
+            await client.clearStore()  // clears cache without refetching
+            toaster.create({
+                title: "Log out successful. See you soon!",
+                type: "success",
+                duration: 3000,
+            })
             navigate("/login");
         } catch {
             toaster.create({ title: "Failed to log out", type: "error", duration: 3000 });
