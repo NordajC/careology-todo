@@ -1,8 +1,8 @@
-# Checked ✅
+# Checked 
 
 A simple but full-featured todo app built as a take-home task for Careology.
 
-🌐 **Live:** http://51.20.193.244
+**Live:** http://51.20.193.244
 
 ---
 
